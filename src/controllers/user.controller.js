@@ -1,7 +1,6 @@
 const User = require('../models/users.model')
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const JWT_SECRET = "mysecretkey123";
 
 async function HandleCreateUser(req, res) {
     try {
@@ -72,7 +71,7 @@ async function HandleUserLogin(req, res) {
       {id:user._id,
        email: user.email
       },
-      JWT_SECRET,
+      process.env.JWT_SECRET,
       {expiresIn:"1d"}
     );
 
