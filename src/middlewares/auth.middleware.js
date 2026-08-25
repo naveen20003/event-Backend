@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 
 
-const JWT_SECRET = "mysecretkey123";
+
 function Auth(req,res,next) {
       try{
     
@@ -13,7 +13,7 @@ function Auth(req,res,next) {
     
         const decoded = jwt.verify(
           token.split(" ")[1],
-          JWT_SECRET
+          process.env.JWT_SECRET
         );
     
         req.user = decoded;

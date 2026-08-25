@@ -1,5 +1,5 @@
 const express = require('express')
-const { connectDB } = require('../server/src/config/db')
+const { connectDB } = require('./src/config/db')
 const cors = require('cors')
 const userRoutes = require('./src/routes/user.routes')
 const eventRoutes = require('./src/routes/event.routes')
@@ -9,7 +9,7 @@ const budgetRoutes = require('./src/routes/budget.routes')
 const app = express()
 app.use(cors())
 app.use(express.json())
-
+require("dotenv").config();
 
 // connectDB('mongodb://localhost:27017/event-planner')
 // .then(()=> console.log('connected succesfully'))
@@ -19,7 +19,7 @@ let isConnected = false;
 
 async function connectToMongoDb() {
   try{
-    await connectDB('mongodb://localhost:27017/event-planner', {
+    await connectDB(process.env.mongodbUrl, {
     useNewUrlParser: true,
     useUnifiedTopology: true
   });
